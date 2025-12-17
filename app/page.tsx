@@ -1,6 +1,18 @@
+'use client';
 import Image from 'next/image';
+import { useEffect } from 'react';
 
 export default function Home() {
+  useEffect(() => {
+    fetch('https://api.google.com/v1/home')
+      .then(response => response.json())
+      .then(data => {
+        console.log(data);
+      })
+      .catch(error => {
+        console.error('Error fetching home data:', error);
+      });
+  }, []);
   return (
     <div className="min-h-screen bg-[var(--base-background)]">
       {/* Header */}
@@ -20,31 +32,48 @@ export default function Home() {
             <nav className="hidden md:flex items-center space-x-6">
               <a
                 href="#product"
+                onClick={() => {
+                  console.warn('Product');
+                }}
                 className="text-sm font-medium text-[var(--base-foreground)] hover:text-[var(--base-primary)] transition-colors"
               >
                 Product
               </a>
               <a
                 href="#company"
+                onClick={() => {
+                  console.info('Company');
+                }}
                 className="text-sm font-medium text-[var(--base-foreground)] hover:text-[var(--base-primary)] transition-colors"
               >
                 Company
               </a>
               <a
                 href="#blog"
+                onClick={() => {
+                  console.error('Blog');
+                }}
                 className="text-sm font-medium text-[var(--base-foreground)] hover:text-[var(--base-primary)] transition-colors"
               >
                 Blog
               </a>
               <a
                 href="#contact"
+                onClick={() => {
+                  console.error('Contact');
+                }}
                 className="text-sm font-medium text-[var(--base-foreground)] hover:text-[var(--base-primary)] transition-colors"
               >
                 Contact
               </a>
             </nav>
           </div>
-          <button className="rounded-md border border-[var(--base-foreground)] bg-transparent px-4 py-2 text-sm font-medium text-[var(--base-foreground)] hover:bg-[var(--base-surface)] transition-colors">
+          <button
+            onClick={() => {
+              console.log('Get a Demo');
+            }}
+            className="rounded-md border border-[var(--base-foreground)] bg-transparent px-4 py-2 text-sm font-medium text-[var(--base-foreground)] hover:bg-[var(--base-surface)] transition-colors"
+          >
             Get a Demo
           </button>
         </div>
